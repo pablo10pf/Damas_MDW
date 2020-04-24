@@ -115,4 +115,58 @@ public class RemovingRandomPieceAfterNotEatingEnemyTest extends GameTest {
             new Coordinate(4, 5)
         );
     }
+
+    @Test
+    public void testRemoveWhenTwoMovesDoneAndNotEatWhenPossibleInWhite() {
+        this.setGame(Color.WHITE,
+            "        ",
+            "  n     ",
+            "        ",
+            "    n   ",
+            "        ",
+            "      n ",
+            "       b",
+            "        ");
+        this.setExpectedGame(Color.BLACK,
+            "        ",
+            "  n     ",
+            "        ",
+            "        ",
+            "        ",
+            "        ",
+            "        ",
+            "        ");
+        this.assertMove(
+            new Coordinate(6, 7),
+            new Coordinate(4, 5),
+            new Coordinate(2, 3)
+        );
+    }
+
+    @Test
+    public void testRemoveWhenTwoMovesDoneAndNotEatWhenPossibleInBlack() {
+        this.setGame(Color.BLACK,
+            " n      ",
+            "  b     ",
+            "        ",
+            "    b   ",
+            "        ",
+            "      b ",
+            "        ",
+            "        ");
+        this.setExpectedGame(Color.WHITE,
+            "        ",
+            "        ",
+            "        ",
+            "        ",
+            "        ",
+            "      b ",
+            "        ",
+            "        ");
+        this.assertMove(
+            new Coordinate(0, 1),
+            new Coordinate(2, 3),
+            new Coordinate(4, 5)
+        );
+    }
 }
