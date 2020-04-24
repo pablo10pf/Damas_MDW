@@ -33,7 +33,7 @@ public class Coordinate {
 
     private boolean isWithIn() {
         return Coordinate.LOWER_LIMIT <= row && row <= Coordinate.UPPER_LIMIT && Coordinate.LOWER_LIMIT <= column
-                && column <= Coordinate.UPPER_LIMIT;
+            && column <= Coordinate.UPPER_LIMIT;
     }
 
     private Coordinate substract(Coordinate coordinate) {
@@ -47,8 +47,8 @@ public class Coordinate {
     Direction getDirection(Coordinate coordinate) {
         assert coordinate != null;
         Coordinate substract = coordinate.substract(this);
-        for (Direction direction : Direction.values()) 
-            if (direction.isOnDirection(substract)) 
+        for (Direction direction : Direction.values())
+            if (direction.isOnDirection(substract))
                 return direction;
         return null;
     }
@@ -68,12 +68,12 @@ public class Coordinate {
         return this.plus(direction.getDistanceCoordinate(1));
     }
 
-    List<Coordinate> getBetweenDiagonalCoordinates(Coordinate coordinate){
+    List<Coordinate> getBetweenDiagonalCoordinates(Coordinate coordinate) {
         assert this.isOnDiagonal(coordinate);
         List<Coordinate> coordinates = new ArrayList<Coordinate>();
         final Direction direction = this.getDirection(coordinate);
         Coordinate cursor = this.plus(direction.getDistanceCoordinate(1));
-        while (!cursor.equals(coordinate)){
+        while (!cursor.equals(coordinate)) {
             coordinates.add(cursor);
             cursor = cursor.plus(direction.getDistanceCoordinate(1));
         }
@@ -88,6 +88,19 @@ public class Coordinate {
                 diagonalCoordinates.add(diagonalCoordinate);
         }
         return diagonalCoordinates;
+    }
+
+    public List<Coordinate> getCoordinatesFromDestinationDiagonals() {
+        ArrayList<Coordinate> destinationDiagonalsCoordinates = new ArrayList<Coordinate>();
+        if (this.row >= LOWER_LIMIT + 2 && this.column <= UPPER_LIMIT - 2)
+            destinationDiagonalsCoordinates.add(new Coordinate(this.row - 2, this.column + 2)); // diagonal arriba derecha
+        if (this.row <= UPPER_LIMIT - 2 && this.column <= UPPER_LIMIT - 2)
+            destinationDiagonalsCoordinates.add(new Coordinate(this.row + 2, this.column + 2)); // diagonal abajo derecha
+        if (this.row <= UPPER_LIMIT - 2 && this.column >= LOWER_LIMIT + 2)
+            destinationDiagonalsCoordinates.add(new Coordinate(this.row + 2, this.column - 2)); // diagonal  abajo izquierda
+        if (this.row >= LOWER_LIMIT + 2 && this.column >= LOWER_LIMIT + 2)
+            destinationDiagonalsCoordinates.add(new Coordinate(this.row - 2, this.column - 2)); // diagonal arriba izquierda
+        return destinationDiagonalsCoordinates;
     }
 
     boolean isBlack() {
