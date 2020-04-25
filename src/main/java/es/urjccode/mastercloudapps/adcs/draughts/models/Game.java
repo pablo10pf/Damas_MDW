@@ -57,22 +57,13 @@ public class Game {
     }
 
     private void checkEatingEnemyWasPossible(Error error, Coordinate[] coordinates) {
-        List<Coordinate> canBeRemovedCoordinates;
         if (error == null && coordinates.length == 2) {
             if (this.isPossibleEatingEnemyInDiagonals(coordinates[0]))
                 this.board.remove(coordinates[1]);
-            canBeRemovedCoordinates = this.isPossibleEatingEnemyInTurn();
-            if (!canBeRemovedCoordinates.isEmpty()) {
-                Collections.shuffle(canBeRemovedCoordinates);
-                this.board.remove(canBeRemovedCoordinates.get(0));
-            }
+            removeRandomPieceIfIsPossibleEatingEnemyInTurn();
         }
-        if (error == null && coordinates.length == 3 ) {
-            canBeRemovedCoordinates = this.isPossibleEatingEnemyInTurn();
-            if (!canBeRemovedCoordinates.isEmpty()) {
-                Collections.shuffle(canBeRemovedCoordinates);
-                this.board.remove(canBeRemovedCoordinates.get(0));
-            }
+        if (error == null && coordinates.length == 3) {
+            removeRandomPieceIfIsPossibleEatingEnemyInTurn();
         }
     }
 
@@ -184,6 +175,14 @@ public class Game {
                 canBeRemovedCoordinates.add(coordinate);
         }
         return canBeRemovedCoordinates;
+    }
+
+    private void removeRandomPieceIfIsPossibleEatingEnemyInTurn() {
+        List<Coordinate> canBeRemovedCoordinates = this.isPossibleEatingEnemyInTurn();
+        if (!canBeRemovedCoordinates.isEmpty()) {
+            Collections.shuffle(canBeRemovedCoordinates);
+            this.board.remove(canBeRemovedCoordinates.get(0));
+        }
     }
 
     public void cancel() {
