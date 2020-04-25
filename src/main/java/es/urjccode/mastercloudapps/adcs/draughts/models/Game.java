@@ -36,7 +36,6 @@ public class Game {
     public Error move(Coordinate... coordinates) {
         Error error = null;
         List<Coordinate> removedCoordinates = new ArrayList<Coordinate>();
-        List<Coordinate> canBeRemovedCoordinates = new ArrayList<Coordinate>();
         int pair = 0;
         do {
             error = this.isCorrectPairMove(pair, coordinates);
