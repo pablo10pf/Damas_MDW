@@ -46,6 +46,18 @@ public class Game {
             }
         } while (pair < coordinates.length - 1 && error == null);
 
+        checkEatingEnemyWasPossible(error, coordinates);
+
+        error = this.isCorrectGlobalMove(error, removedCoordinates, coordinates);
+        if (error == null)
+            this.turn.change();
+        else
+            this.unMovesUntilPair(removedCoordinates, pair, coordinates);
+        return error;
+    }
+
+    private void checkEatingEnemyWasPossible(Error error, Coordinate[] coordinates) {
+        List<Coordinate> canBeRemovedCoordinates;
         if (error == null && coordinates.length == 2) {
             if (this.isPossibleEatingEnemyInDiagonals(coordinates[0]))
                 this.board.remove(coordinates[1]);
@@ -62,13 +74,6 @@ public class Game {
                 this.board.remove(canBeRemovedCoordinates.get(0));
             }
         }
-
-        error = this.isCorrectGlobalMove(error, removedCoordinates, coordinates);
-        if (error == null)
-            this.turn.change();
-        else
-            this.unMovesUntilPair(removedCoordinates, pair, coordinates);
-        return error;
     }
 
     private Error isCorrectPairMove(int pair, Coordinate... coordinates) {

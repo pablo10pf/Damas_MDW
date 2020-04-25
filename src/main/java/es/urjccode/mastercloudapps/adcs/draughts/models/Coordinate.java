@@ -93,13 +93,13 @@ public class Coordinate {
     public List<Coordinate> getCoordinatesFromDestinationDiagonals() {
         ArrayList<Coordinate> destinationDiagonalsCoordinates = new ArrayList<Coordinate>();
         if (this.row >= LOWER_LIMIT + 2 && this.column <= UPPER_LIMIT - 2)
-            destinationDiagonalsCoordinates.add(new Coordinate(this.row - 2, this.column + 2)); // diagonal arriba derecha
+            destinationDiagonalsCoordinates.add(new Coordinate(this.row - 2, this.column + 2));
         if (this.row <= UPPER_LIMIT - 2 && this.column <= UPPER_LIMIT - 2)
-            destinationDiagonalsCoordinates.add(new Coordinate(this.row + 2, this.column + 2)); // diagonal abajo derecha
+            destinationDiagonalsCoordinates.add(new Coordinate(this.row + 2, this.column + 2));
         if (this.row <= UPPER_LIMIT - 2 && this.column >= LOWER_LIMIT + 2)
-            destinationDiagonalsCoordinates.add(new Coordinate(this.row + 2, this.column - 2)); // diagonal  abajo izquierda
+            destinationDiagonalsCoordinates.add(new Coordinate(this.row + 2, this.column - 2));
         if (this.row >= LOWER_LIMIT + 2 && this.column >= LOWER_LIMIT + 2)
-            destinationDiagonalsCoordinates.add(new Coordinate(this.row - 2, this.column - 2)); // diagonal arriba izquierda
+            destinationDiagonalsCoordinates.add(new Coordinate(this.row - 2, this.column - 2));
         return destinationDiagonalsCoordinates;
     }
 
