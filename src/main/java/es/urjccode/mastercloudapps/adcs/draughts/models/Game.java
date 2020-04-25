@@ -156,10 +156,8 @@ public class Game {
                             return true;
                 }
             }
-            return false;
-        } else {
-            return false;
         }
+        return false;
     }
 
     private List<Coordinate> getCoordinatesWhereIsPossibleEatingEnemyInTurn() {
