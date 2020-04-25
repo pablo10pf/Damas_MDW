@@ -14,7 +14,7 @@ public class GameBuilder {
         this.strings = new ArrayList<String>();
     }
 
-    public GameBuilder color(Color color){
+    public GameBuilder color(Color color) {
         this.color = color;
         return this;
     }
@@ -53,8 +53,6 @@ public class GameBuilder {
             Color color = this.getColor(string.charAt(j));
             if (color != null) {
                 Piece piece = new Pawn(color);
-                if (Character.isUpperCase(string.charAt(j)))
-                    piece = new Draught(color);
                 board.put(new Coordinate(row, j), piece);
             }
         }
@@ -62,14 +60,14 @@ public class GameBuilder {
 
     private Color getColor(char character) {
         switch (character) {
-        case 'b':
-        case 'B':
-            return Color.WHITE;
-        case 'n':
-        case 'N':
-            return Color.BLACK;
-        default:
-            return null;
+            case 'b':
+            case 'B':
+                return Color.WHITE;
+            case 'n':
+            case 'N':
+                return Color.BLACK;
+            default:
+                return null;
         }
     }
 
