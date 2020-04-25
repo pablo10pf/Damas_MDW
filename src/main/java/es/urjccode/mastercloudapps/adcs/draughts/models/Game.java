@@ -168,7 +168,7 @@ public class Game {
         }
     }
 
-    private List<Coordinate> isPossibleEatingEnemyInTurn() {
+    private List<Coordinate> getCoordinatesWhereIsPossibleEatingEnemyInTurn() {
         List<Coordinate> canBeRemovedCoordinates = new ArrayList<Coordinate>();
         for (Coordinate coordinate : this.getCoordinatesWithActualColor()) {
             if (this.isPossibleEatingEnemyInDiagonals(coordinate))
@@ -178,7 +178,7 @@ public class Game {
     }
 
     private void removeRandomPieceIfIsPossibleEatingEnemyInTurn() {
-        List<Coordinate> canBeRemovedCoordinates = this.isPossibleEatingEnemyInTurn();
+        List<Coordinate> canBeRemovedCoordinates = this.getCoordinatesWhereIsPossibleEatingEnemyInTurn();
         if (!canBeRemovedCoordinates.isEmpty()) {
             Collections.shuffle(canBeRemovedCoordinates);
             this.board.remove(canBeRemovedCoordinates.get(0));
